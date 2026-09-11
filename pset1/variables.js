@@ -51,3 +51,12 @@ let canRideCoaster = myHeight >= minimumHeight; // bool
 let message = canRideCoaster ? "Come on in!" : "Get lost motherfucker"
 print(message);
 */
+const minAcceptHW = 60;
+let minRequired = prompt("How many minutes do you need for homework?");
+let isWeedSmoked = minRequired > minAcceptHW; // bool
+let message1 = isWeedSmoked ? "Lets light a joint" : "I can focus on my school work"
+print(message1);
+
+let message2 = isWeedSmoked ? "mm I'm hungry!" : "guess I'll save it"
+print(message2);
+/*
