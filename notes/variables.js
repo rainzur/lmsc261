@@ -39,11 +39,13 @@ let isMaxAfraid = currentFloor > scaredFloor;
 let message = isMaxAfraid ? "Oh fuk!!" : "Whew";
 print(message)
 */
+/*
 let semester = prompt("whats your semester?");
 let closeToGrad = 7;
 let isCloseToGrad = semester >= closeToGrad; // boolean
 let message = isCloseToGrad ? "Alcohol is not the answer" : "practice your fucking scales"
 print(message)
+*/
 /*
 const minimumHeight = 4; // number
 let myHeight = prompt("How tall are you?");
@@ -51,6 +53,7 @@ let canRideCoaster = myHeight >= minimumHeight; // bool
 let message = canRideCoaster ? "Come on in!" : "Get lost motherfucker"
 print(message);
 */
+/*
 const minAcceptHW = 60;
 let minRequired = prompt("How many minutes do you need for homework?");
 let isWeedSmoked = minRequired > minAcceptHW; // bool
@@ -60,3 +63,38 @@ print(message1);
 let message2 = isWeedSmoked ? "mm I'm hungry!" : "guess I'll save it"
 print(message2);
 /*
+/*
+let fruits = [
+    "mango", 
+    "kiwi", 
+    "strawberry", 
+    "grapes", 
+    "orange"
+];
+print(fruits);
+
+let fruitInstance = fruits[1];
+print(fruitInstance);
+*/
+/*
+let workouts = [];
+workouts.push(prompt("how do u get swoll"));
+workouts.push(prompt("how do u get swoll"));
+workouts.push(prompt("how do u get swoll"));
+workouts.push(prompt("how do u get swoll"));
+
+let randomInt = math.random() * 4
+randomInt = Math.floor(randomInt)
+print(workouts[randomInt]);
+*/
+
+let workouts = [];
+workouts.push(prompt("whats your workout?"));
+workouts.push(prompt("whats your workout?"));
+workouts.push(prompt("whats your workout?"));
+workouts.push(prompt("whats your workout?"));
+print(workouts);
+
+let randomInt = Math.random() * 4;
+randomInt = Math.floor(randomInt);
+print(workouts[randomInt]);
