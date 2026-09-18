@@ -13,6 +13,7 @@ if (isTallEnough){
 
 print("Amusement parks are so fun!");
 */
+/*
 let numInstruments = prompt("How many instruments do you play?");
 numInstruments = Number(numInstruments);
 
@@ -33,3 +34,33 @@ if(numInstruments > 1){
 }
 
 print("See ya later alligator!");
+*/
+/*
+let randomNumber = Math.random(); // 0~1
+randomNumber = randomNumber * 20; // 0~20
+randomNumber = Math.floor(randomNumber);
+randomNumber = randomNumber - 10; // -10 ~ 10
+print(randomNumber);
+
+if (randomNumber > 0){
+    print("omg im melting!");
+
+} else if (randomNumber < 0){
+    print("It's so cold!")
+
+} else {
+    print("Whew!")
+}
+*/
+/*
+for(let i = 1; i <= 10; i++){
+    print(i);
+}
+*/
+/*
+for(let i = 10; i > 0; i--){
+    print(i);
+}
+print("KABOOM");
+print("muahahaha");
+*/
