@@ -64,3 +64,32 @@ for(let i = 10; i > 0; i--){
 print("KABOOM");
 print("muahahaha");
 */
+/*
+let games = [
+    "pokemon",
+    "ghost of tsushima",
+    "street fighter",
+    "Balatro",
+    "Rocket league",
+    "GTA5",
+    "Zelda",
+    "League",
+    "Beam.NG"
+];
+
+for(let index = 0; index < games.length; index++){
+    print(games[index]);
+}
+*/
+const numGreencardsAvailable = 20;
+let numImmigrants = 120;
+
+for(let p = 0; p < numImmigrants; p++){
+    if (p < numGreencardsAvailable){
+        print("Welcome!");
+
+    } else {
+        print("Please try again next year :)");
+    }
+
+}
