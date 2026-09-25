@@ -23,7 +23,7 @@ if(numInstruments > 1){
 } else if(numInstruments === 1){
     print("Good for you!")
 
-} else if (){}
+} else if (){
 
 } else {
     print("Do you even have a stable job?");
