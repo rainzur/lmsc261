@@ -12,35 +12,35 @@
     canvas.width *= dpr, canvas.height *= dpr;
     ctx.scale(dpr, dpr);
 
-    ctx.fillStyle = "lightblue";
-    ctx.fillRect(0,0, w, h);
 
-    let xPos = 394;
-    let yPos = Math.random() * h;
-    let radius = 90;
+ctx.fillStyle = "#f2edeb"
+ctx.fillRect(0, 0, w, h)
 
-    //rainbow parts;
-    let colors = ["red", "orange", "yellow", "green",
-     "blue", "indigo", "violet"]
+let numCircles = prompt("How many circles?");
 
-    for(let i = 0; i < 7; i++){
+  let colors = ["red", "orange", "yellow", 
+                "green", "blue", "indigo", "violet"];
+
+    for(let i = 0; i < numCircles; i++){
         let xPos = 300;
         let yPos = 300;
         let radius = 125 + (i + 1) * 20;
-        
+
+        let startAngle = Math.PI * 1.25;
+        let endAngle = startAngle + Math.PI * 0.75;
         ctx.beginPath();
         ctx.arc(xPos,
                 yPos,
                 radius,
-                0,
-                Math.PI,
-                true);
+                startAngle,  // 3 PM
+                endAngle, 
+                false);
 
-        ctx.lineWidth = 4;
+        ctx.lineWidth = Math.random() * 10;
         ctx.lineCap = "round";
         ctx.strokeStyle = colors[6 - i];
         ctx.stroke();
-}
-
+    }
     
+
 </script>
