@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(0,0, w, h);
+
+    const aX = w * 0.4, aY = h * 0.1;
+    const bX = aX, bY = h * 0.4;
+    const cX = aX, cY = h * 0.7;
+    const dX = w * 0.7, dY = bY;
+    const eX = dX, eY = cY;
+    const fX = dX, fY = h * 0.9;
+
+    ctx.beginPath();
+    ctx.moveTo(aX, aY);
+    ctx.lineTo(cX, cY);
+    ctx.lineTo(eX, eY);
+
+
+    ctx.moveTo(bX, bY); //starts from a new coordinate
+    ctx.lineTo(dX, dY);
+    ctx.lineTo(fX,fY);
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    </script>

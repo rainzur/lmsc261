@@ -29,9 +29,9 @@ const colors = [
 
 let numCircles = prompt("How many circles?");
 const maxRadius = w * 0.45;
-const radiusIncr = maxRadius/numCircle;
+const radiusIncr = maxRadius / numCircles;
 
-  for(i = 0; i = numCircles; i++){
+  for(i = 0; i <= numCircles; i++){
         let xPos = 300;
         let yPos = 300;
         let radius = radiusIncr * (i + 1);
@@ -45,7 +45,7 @@ const radiusIncr = maxRadius/numCircle;
                 true);
 
         ctx.lineWidth = 8;
-        ctx.strokeStyle = colors[8 - i];
+        ctx.strokeStyle = colors[i % colors.length];
         ctx.stroke();
 }
     
