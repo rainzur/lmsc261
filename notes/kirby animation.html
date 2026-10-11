@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+
+
+
+const kirbyColor = [
+        "#FBEA47",
+        "#F5C5D6",
+        "#BAE4F9",
+        "#F38B96",
+        "#B1FAB0",
+        "#000224",
+    ]
+
+    let colorIndex = 0;
+    let color = kirbyColor[0]
+
+    // draw body
+    let mouthSize = w * 0.1;
+    let kirbyX = w / 2, kirbyY = h / 2;
+    let xVel = 7, yVel = 0.5;
+    function drawKirby(cx, cy){
+        let bodyColor = color;
+        let dimpleColor = "#E994A0";
+        let eyeColorA = "#2F3869";
+        let eyeColorB = "#F4F4F6";
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, w * 0.3, 0, Math.PI * 2, false);
+        ctx.fillStyle = bodyColor;
+        ctx.fill();
+
+
+        function drawEye(eyeX, eyeY){
+            let eyeRadius = w * 0.025;
+            // eye base
+            ctx.beginPath();
+            ctx.ellipse(eyeX,
+                        eyeY, 
+                        eyeRadius,
+                        eyeRadius * 2,
+                        0,
+                        Math.PI * 2, 
+                        false);
+            ctx.fillStyle = eyeColorA;
+            ctx.fill();
+
+            // glimmer
+            ctx.beginPath()
+            ctx.arc(eyeX, eyeY - eyeRadius, eyeRadius * 0.65, 0, Math.PI * 2, false);
+            ctx.fillStyle = eyeColorB;
+            ctx.fill();
+        }
+
+        drawEye(cx - w * 0.075, cy - h * 0.1);
+        drawEye(cx + w * 0.075, cy - h * 0.1);
+
+        // draw mouth
+        ctx.beginPath();
+        ctx.ellipse(cx,
+                    cy + h * 0.1,
+                    mouthSize,
+                    mouthSize,
+                    0,
+                    Math.PI * 2,
+                    false)
+        ctx.fillStyle = dimpleColor
+        ctx.fill();
+    }
+
+    function draw(){
+        ctx.fillStyle = "lightblue";
+        ctx.fillRect(0, 0, w, h);
+
+        drawKirby(kirbyX, kirbyY)
+    }
+
+    draw();
+
+    function tick(){
+        kirbyX += xVel;
+        if (kirbyX >= w * 0.75){
+            xVel = xVel * -1;
+            colorIndex++ 
+            colorIndex = colorIndex % kirbyColor.length
+        }
+        if (kirbyX <= w * 0.25) {
+            xVel = xVel * -1;
+            colorIndex++
+            colorIndex = colorIndex % kirbyColor.length
+        }
+
+        kirbyY += yVel;
+        if (kirbyY >= h * 0.75) {
+            yVel = yVel * -1;
+        }
+        if (kirbyY <= h * 0.25) {
+            yVel = yVel * -1;
+        }
+
+        color = kirbyColor[colorIndex]
+
+        draw();
+        requestAnimationFrame(tick); // recursive function
+    }
+    tick();
+
+</script>

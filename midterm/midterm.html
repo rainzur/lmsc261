@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+    
+    ctx.fillStyle = "#281866"; //bg
+    ctx.fillRect (0, 0, w, h)
+    
+const cx = w / 2, cy = h / 2; // find the center coordinate
+const radiusA = w * .1  //eyeball radius
+
+//cat body colors
+let bodyColor = "#0f0926";
+let insideEar = "#3e3075";
+let mouthColor = "#060314";
+let eyeColor = "#fff86b";
+let whiskerColor = "#dad8e6";
+
+//body
+const tlHeadX = w * .2, trHeadX = w * .8 ;
+const topHead = h * .3;
+const midHeadX = tlHeadX + trHeadX / 2.75;
+const leftBody = w * .2, rightBody = w * .8;
+
+    ctx.beginPath();
+        ctx.moveTo(w * .2, h * 1);
+        ctx.lineTo(tlHeadX, topHead); //top left
+        ctx.lineTo(trHeadX, topHead); //top right
+        ctx.lineTo(w * .8, h * 1); 
+
+    ctx.fillStyle = bodyColor;
+    ctx.fill();
+
+//ears
+const bodyLength = (h * 1) - (h * .3);
+const earLength = bodyLength / 8;
+    ctx.beginPath();
+        ctx.moveTo(tlHeadX, topHead);
+        ctx.lineTo(tlHeadX, earLength);
+        ctx.lineTo(midHeadX, topHead);
+        ctx.lineTo(rightBody, earLength);
+        ctx.lineTo(rightBody, topHead);
+        ctx.lineTo(tlHeadX, topHead);
+
+    ctx.fillStyle = bodyColor;
+    ctx.fill();
+
+//eyes
+    ctx.beginPath();
+        ctx.arc(cx - 100,
+                cy,
+                radiusA,
+                20,
+                Math.PI,
+                false
+        )
+        ctx.rotate((45 * Math.PI) / 300); 
+        ctx.fillStyle = "White";
+        ctx.fill();
+
+</script>
