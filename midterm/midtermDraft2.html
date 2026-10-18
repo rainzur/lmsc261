@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+ // -------- //  
+    ctx.fillStyle = "#281866"; //bg
+    ctx.fillRect (0, 0, w, h)
+    
+// cat body colors
+let bodyColor = "#0f0926";
+let insideEar = "#3e3075";
+let mouthColor = "#060314";
+let eyeColor = "#fff86b";
+let whiskerColor = "#dad8e6";
+
+// body
+const tlHeadX = w * .2, trHeadX = w * .8 ;
+const topHead = h * .3;
+const midHeadX = tlHeadX + trHeadX / 2.75;
+const leftBody = w * .2, rightBody = w * .8;
+
+    ctx.beginPath();
+        ctx.moveTo(w * .2, h * 1);
+        ctx.lineTo(tlHeadX, topHead); //top left
+        ctx.lineTo(trHeadX, topHead); //top right
+        ctx.lineTo(w * .8, h * 1); 
+
+    ctx.fillStyle = bodyColor;
+    ctx.fill();
+
+// ears
+const bodyLength = (h * 1) - (h * .3);
+const earLength = bodyLength / 8;
+    ctx.beginPath();
+        ctx.moveTo(tlHeadX, topHead);
+        ctx.lineTo(tlHeadX, earLength);
+        ctx.lineTo(midHeadX, topHead);
+        ctx.lineTo(rightBody, earLength);
+        ctx.lineTo(rightBody, topHead);
+        ctx.lineTo(tlHeadX, topHead);
+
+    ctx.fillStyle = bodyColor;
+    ctx.fill();
+
+// eyes
+function drawEye(eyeX, eyeY){
+const radius = w * 0.14;
+const startAngleA = Math.PI * 0.2
+const yOffset = Math.sin(startAngleA) * radius;
+
+    ctx.beginPath();
+        ctx.arc(eyeX,
+                eyeY - yOffset,
+                radius,
+                startAngleA,
+                startAngleA + Math.PI * 0.6,
+                false);
+
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
+    ctx.fillStyle = "white";
+     ctx.fill()
+
+const startAngleB = Math.PI * 1.2
+
+    ctx.beginPath();
+        ctx.arc(eyeX,
+                eyeY + yOffset,
+                radius,
+                startAngleB,
+                startAngleB + Math.PI * 0.6,
+                false);
+
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
+    ctx.fillStyle = "white";
+    ctx.fill()
+}
+ let leftEyeX = midHeadX / 1.5, leftEyeY = h / 1.85;
+ let rightEyeX = midHeadX * 1.35, rightEyeY = h / 1.85;
+ drawEye(leftEyeX, leftEyeY);
+ drawEye(rightEyeX, rightEyeY);
+
+ // nose
+    ctx.beginPath()
+    ctx.arc(
+        midHeadX,
+        h / 1.5, 
+        15,
+        Math.PI * 2, 
+        false);
+
+        ctx.fillStyle = "pink";
+        ctx.fill();
+        ctx.strokeStyle = "#ff8298";
+        ctx.stroke();
+
+// mouth
+    const mouthAngle = Math.PI * 2
+ctx.beginPath();
+    ctx.arc(midHeadX / 1.21,
+        h / 1.445, 
+        50,
+        mouthAngle,
+        Math.PI, 
+        false);
+    
+    ctx.strokeStyle = "#403869";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    
+ctx.beginPath();
+    ctx.arc(midHeadX * 1.17,
+        h / 1.445, 
+        50,
+        mouthAngle,
+        Math.PI, 
+        false);
+
+    ctx.strokeStyle = "#403869";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+// whisker funct
+function DrawWhisker(LwhiskerX, LwhiskerY){
+let insWhisker = midHeadX / 1.7
+
+ctx.beginPath();
+ctx.moveTo(LwhiskerX, LwhiskerY);
+ctx.lineTo(insWhisker, LwhiskerY);
+ctx.strokeStyle = "white";
+ctx.lineWidth = 1.5;
+ctx.stroke();
+}
+DrawWhisker(midHeadX / 5, h / 1.325)
+
+</script>
+
