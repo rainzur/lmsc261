@@ -52,6 +52,7 @@ const earLength = bodyLength / 8;
     ctx.fill();
 
 // eyes
+// bottom eye
 function drawEye(eyeX, eyeY){
 const radius = w * 0.14;
 const startAngleA = Math.PI * 0.2
@@ -70,6 +71,7 @@ const yOffset = Math.sin(startAngleA) * radius;
     ctx.fillStyle = "white";
      ctx.fill()
 
+// top eye
 const startAngleB = Math.PI * 1.2
 
     ctx.beginPath();
@@ -80,16 +82,95 @@ const startAngleB = Math.PI * 1.2
                 startAngleB + Math.PI * 0.6,
                 false);
 
-    ctx.strokeStyle = 'white';
+    ctx.strokeStyle = "white";
     ctx.stroke();
     ctx.fillStyle = "white";
     ctx.fill()
-}
- let leftEyeX = midHeadX / 1.5, leftEyeY = h / 1.85;
- let rightEyeX = midHeadX * 1.35, rightEyeY = h / 1.85;
- drawEye(leftEyeX, leftEyeY);
- drawEye(rightEyeX, rightEyeY);
 
+// iris
+const Iradius = w * 0.073;
+const leftIstartAngleA = Math.PI * 0.7
+const IyOffset = Math.sin(leftIstartAngleA) * radius;
+const IeyeX = eyeX + w / 24
+const IeyeY = eyeY + h/12
+
+    ctx.beginPath();
+        ctx.arc(IeyeX,
+                IeyeY - yOffset,
+                Iradius,
+                leftIstartAngleA,
+                leftIstartAngleA + Math.PI * 0.6,
+                false);
+
+    ctx.strokeStyle = "pink";
+    ctx.stroke();
+    ctx.fillStyle = "pink";
+     ctx.fill()
+     
+const rightIstartAngleA = Math.PI * 5.7
+const rightIeyeX = eyeX - w / 22.5
+const rightIeyeY = eyeY + h/12
+   ctx.beginPath();
+        ctx.arc(rightIeyeX,
+                rightIeyeY - yOffset,
+                Iradius,
+                rightIstartAngleA,
+                rightIstartAngleA + Math.PI * 0.6,
+                false);
+
+    ctx.strokeStyle = "blue";
+    ctx.stroke();
+    ctx.fillStyle = "blue";
+     ctx.fill()
+}
+ let leftEyeX = midHeadX / 1.5, EyeY = h / 1.85;
+ let rightEyeX = midHeadX * 1.35
+ drawEye(leftEyeX, EyeY);
+ drawEye(rightEyeX, EyeY);
+ 
+ // happy mouth
+ function drawHappyMouth(){
+     const mouthAngle = Math.PI * 2
+ ctx.beginPath(); //left side mouth
+     ctx.arc(midHeadX / 1.21,
+         h / 1.445, 
+         50,
+         mouthAngle,
+         Math.PI, 
+         false);
+     
+     ctx.strokeStyle = "#403869";
+     ctx.lineWidth = 4;
+     ctx.stroke();
+ 
+ ctx.beginPath(); //right side mouth
+     ctx.arc(midHeadX * 1.17,
+         h / 1.445, 
+         50,
+         mouthAngle,
+         Math.PI, 
+         false);
+ 
+     ctx.strokeStyle = "#403869";
+     ctx.lineWidth = 4;
+     ctx.stroke();
+ }
+ // mad mouth
+function drawMadMouth(){
+ ctx.beginPath(); //left side
+     ctx.moveTo(midHeadX, h / 1.46)
+     ctx.lineTo(midHeadX / 1.5, h / 1.2)
+     ctx.strokeStyle = "#403869"
+     ctx.lineWidth = 3
+     ctx.stroke();
+  
+ ctx.beginPath(); //right side
+     ctx.moveTo(midHeadX, h / 1.46)
+     ctx.lineTo(midHeadX * 1.31, h / 1.2)
+     ctx.strokeStyle = "#403869"
+     ctx.lineWidth = 3
+     ctx.stroke();
+}
  // nose
     ctx.beginPath()
     ctx.arc(
@@ -102,33 +183,8 @@ const startAngleB = Math.PI * 1.2
         ctx.fillStyle = "pink";
         ctx.fill();
         ctx.strokeStyle = "#ff8298";
+        ctx.lineWidth = 3
         ctx.stroke();
-
-// mouth
-    const mouthAngle = Math.PI * 2
-ctx.beginPath();
-    ctx.arc(midHeadX / 1.21,
-        h / 1.445, 
-        50,
-        mouthAngle,
-        Math.PI, 
-        false);
-    
-    ctx.strokeStyle = "#403869";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-    
-ctx.beginPath();
-    ctx.arc(midHeadX * 1.17,
-        h / 1.445, 
-        50,
-        mouthAngle,
-        Math.PI, 
-        false);
-
-    ctx.strokeStyle = "#403869";
-    ctx.lineWidth = 4;
-    ctx.stroke();
 
 // whisker funct
 function DrawWhisker(LwhiskerX, LwhiskerY){
@@ -143,5 +199,19 @@ ctx.stroke();
 }
 DrawWhisker(midHeadX / 5, h / 1.325)
 
+// animation
+let aboveEyes = EyeY + (h / 8)
+let belowEyes = EyeY - (h / 8)
+
+if(aboveEyes){
+    drawHappyMouth
+} else {
+    drawMadMouth
+}
+if(belowEyes){
+    drawHappyMouth
+} else {
+    drawMadMouth
+}
 </script>
 
