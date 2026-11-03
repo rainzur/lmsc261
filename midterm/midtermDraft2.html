@@ -52,15 +52,11 @@ const earLength = bodyLength / 8;
         ctx.fillStyle = bodyColor;
         ctx.fill();
         
-// eyes
-// bottom eye
-let colorA = 168//rgb values for mouse interaction
-let colorB = 91//rgb values for mouse interaction
-
-function drawEye(eyeX, eyeY){
 const radius = w * 0.14;
 const startAngleA = Math.PI * 0.2
 const yOffset = Math.sin(startAngleA) * radius;
+
+function drawEye(eyeX, eyeY){
 
     ctx.beginPath();
         ctx.arc(eyeX,
@@ -93,56 +89,103 @@ const startAngleB = Math.PI * 1.2
     ctx.fillStyle = "white";
     ctx.fill()
 
-// iris
-const Iradius = w * 0.073;
-const leftIstartAngleA = Math.PI * 0.7
-const IyOffset = Math.sin(leftIstartAngleA) * radius;
-const IeyeX = eyeX + w / 24
-const IeyeY = eyeY + h/12
-
-    ctx.beginPath();
-        ctx.arc(IeyeX,
-                IeyeY - yOffset,
-                Iradius,
-                leftIstartAngleA,
-                leftIstartAngleA + Math.PI * 0.6,
-                false);
-
-    ctx.fillStyle = "#a85b0d";
-    ctx.fill()
-     
-const rightIstartAngleA = Math.PI * 5.7
-const rightIeyeX = eyeX - w / 22.5
-const rightIeyeY = eyeY + h/12
-   ctx.beginPath();
-        ctx.arc(rightIeyeX,
-                rightIeyeY - yOffset,
-                Iradius,
-                rightIstartAngleA,
-                rightIstartAngleA + Math.PI * 0.6,
-                false);
-
-    ctx.fillStyle = "#e89527";
-     ctx.fill()
+    
 }
- let leftEyeX = midHeadX / 1.5, EyeY = h / 1.85;
- let rightEyeX = midHeadX * 1.35
- drawEye(leftEyeX, EyeY)
- drawEye(rightEyeX, EyeY)
- 
- // happy mouth
- function happyMouth(){
-     const mouthAngle = Math.PI * 2
- ctx.beginPath(); //left side mouth
-     ctx.arc(midHeadX / 1.21,
-         h / 1.445, 
-         50,
-         mouthAngle,
-         Math.PI, 
-         false);
-     
-     ctx.strokeStyle = "#403869";
-     ctx.lineWidth = 4;
+const leftEyeX = midHeadX / 1.5, EyeY = h / 1.85;
+const rightEyeX = midHeadX * 1.35;
+drawEye(leftEyeX, EyeY);
+drawEye(rightEyeX, EyeY);
+
+//LEFT iris
+const Iradius = w * 0.073;
+const liStartAngA1 = Math.PI * 0.7
+const IyOffset = Math.sin(liStartAngA1) * radius;
+const liEyeX1 = leftEyeX + w / 24
+const liEyeY1 = EyeY + h/12
+
+ctx.beginPath();
+ctx.arc(liEyeX1,
+liEyeY1 - yOffset,
+Iradius,
+liStartAngA1,
+liStartAngA1 + Math.PI * 0.6,
+false);
+
+let darkLeftShade = "#a85b0d";
+ctx.fillStyle = darkLeftShade;
+ctx.fill()
+
+const liStartAngA2 = Math.PI * 5.7
+const liEyeX2 = rightEyeX - w / 22.5
+const liEyeY2 = EyeY + h/12
+ctx.beginPath();
+ctx.arc(liEyeX2,
+liEyeY2 - yOffset,
+Iradius,
+liStartAngA2,
+liStartAngA2 + Math.PI * 0.6,
+false);
+
+let lightLeftShade = "#e89527";
+ctx.fillStyle = lightLeftShade;
+ctx.fill()
+//RIGHT iris
+const riStartAngA1 = Math.PI * 0.7
+const riEyeX1 = leftEyeX + w/2.65
+const riEyeY1 = EyeY + h/12
+
+ctx.beginPath();
+ctx.arc(riEyeX1,
+riEyeY1 - yOffset,
+Iradius,
+riStartAngA1,
+riStartAngA1 + Math.PI * 0.6,
+false);
+
+let darkRightShade = "#a85b0d";
+ctx.fillStyle = darkRightShade;
+ctx.fill()
+
+const riStartAngA2 = Math.PI * 5.7
+const riEyeX2 = leftEyeX - w / 22.5
+const riEyeY2 = EyeY + h/12
+ctx.beginPath();
+ctx.arc(riEyeX2,
+riEyeY2 - yOffset,
+Iradius,
+riStartAngA2,
+riStartAngA2 + Math.PI * 0.6,
+false);
+
+let lightRightShade = "#e89527";
+ctx.fillStyle = lightRightShade; 
+ctx.fill()
+// interaction
+document.addEventListener("mousemove", (e) => {
+    let screenL = 300
+    console.log(e.offsetX)
+    const x = e.offsetX
+
+    if(x < screenL){
+        let darkRightShade = "#e89527"
+        let lightRightShade = "#a85b0d"
+    } else {
+        let darkRightShade = "#a85b0d"
+        let lightRightShade = "#e89527"
+    }}) 
+// happy mouth
+function happyMouth(){
+    const mouthAngle = Math.PI * 2
+    ctx.beginPath(); //left side mouth
+    ctx.arc(midHeadX / 1.21,
+    h / 1.445, 
+    50,
+    mouthAngle,
+    Math.PI, 
+    false);
+    
+    ctx.strokeStyle = "#403869";
+    ctx.lineWidth = 4;
      ctx.stroke();
  
  ctx.beginPath(); //right side mouth
@@ -207,26 +250,4 @@ const scaleStart = isLeft ? 10 : 5
 drawWhisk(leftBody, midHeadX + w/4, true)
 drawWhisk(rightBody, midHeadX + w/4, false)
 happyMouth()
-// interaction
-//failed mouth interaction
-/*
-let aboveEyes = EyeY + (h / 8)
-let belowEyes = EyeY - (h / 8)
-
-document.addEventListener("click", (e) => {
-        const y = e.offsetY
-        if(y > w * 0.4 && y < w * 0.6){
-            madMouth() = !happyMouth()
-        }
-        draw();
-    })
-//failed eye interaction
-document.addEventListener("mousemove", (e) => {
-    let screenL = w/5
-    if(screenL){
-        let eyeColor1 = "#a85b0d"
-    } else {
-        let eyeColor1 = "#e89527"
-    }
-    */
 </script>
