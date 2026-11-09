@@ -90,6 +90,7 @@ worst_dating_spot["amir"] = "garage"
 print(worst_dating_spot.get("min", "key not found")) #insntead of giving errro, will receive value "none" uninit. value. Defensive programming.
 
 worst_halloween_costume = {} # homewokr
+i = 0
     while(i < 4):
     name = input("whats ur name? ")
     costume = input("whats ur worst costume? ")
@@ -144,6 +145,8 @@ for secret in little_secret:
 
     secret_content = secret.get("secret")
     print(secret_content)
+
+    
 
     import json
 
