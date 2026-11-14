@@ -18,7 +18,7 @@ for result in data ["results"]:
     print(result["releaseDate"])
     print("---------------")
 
-    import requests
+import requests
 import json 
 
 try:
